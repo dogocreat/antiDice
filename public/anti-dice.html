@@ -128,6 +128,7 @@
     bankerPoint1.setAttribute("id", "bankerPoint1");
     bankerPoint1.setAttribute("placeholder", "點數1");
     bankerPoint1.setAttribute("value", "");
+    bankerPoint1.inputMode = "numeric";
     banker.appendChild(bankerPoint1);
 
     let bankerPoint2 = document.createElement("input");
@@ -136,6 +137,7 @@
     bankerPoint2.setAttribute("id", "bankerPoint2");
     bankerPoint2.setAttribute("placeholder", "點數2");
     bankerPoint2.setAttribute("value", "");
+    bankerPoint2.inputMode = "numeric";
     banker.appendChild(bankerPoint2);
 
     let bankerScore = document.createElement("input");
@@ -144,6 +146,7 @@
     bankerScore.setAttribute("id", "bankerScore");
     bankerScore.setAttribute("placeholder", "分數");
     bankerScore.setAttribute("value", "1000");
+    bankerScore.inputMode = "numeric";
     banker.appendChild(bankerScore);
 
     // banker.appendChild(createGiftSelect());
@@ -167,6 +170,7 @@
     playerPoint1.setAttribute("name", "playerPoint1");
     playerPoint1.setAttribute("placeholder", "點數1");
     playerPoint1.setAttribute("value", "");
+    playerPoint1.inputMode = "numeric";
     player.appendChild(playerPoint1);
 
     let playerPoint2 = document.createElement("input");
@@ -175,6 +179,7 @@
     playerPoint2.setAttribute("name", "playerPoint2");
     playerPoint2.setAttribute("placeholder", "點數2");
     playerPoint2.setAttribute("value", "");
+    playerPoint2.inputMode = "numeric";
     player.appendChild(playerPoint2);
 
     let playerScore = document.createElement("input");
@@ -183,6 +188,7 @@
     playerScore.setAttribute("name", "playerScore");
     playerScore.setAttribute("placeholder", "分數");
     playerScore.setAttribute("value", "1000");
+    playerScore.inputMode = "numeric";
     player.appendChild(playerScore);
 
     // player.appendChild(createGiftSelect());
