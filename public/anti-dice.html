@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>AntiChat Dice Game</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
   </head>
   <style scoped>
-
     .username {
       width: 100px;
       margin: 3px;
@@ -25,44 +25,73 @@
       text-align: center;
     }
 
-    .addbtn {
+    .btnmargin {
       float: right;
       margin-left: 10px;
     }
 
-    .playerRow{
+    .playerRow {
       margin: 10px;
     }
 
-    table, th, td {
+    table,
+    th,
+    td {
       border: 1px solid black;
       border-collapse: collapse;
       text-align: center;
     }
-    </style>
-    
+  </style>
+
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to
+        continue.</strong
+      >
     </noscript>
     <div>
       <h2>AntiChat Dice Game</h2>
       <div class="card">
         <div class="card-body">
-          <button type="button" class="btn-success" style="width: 100%;height:50px;" onclick="run()">Roll</button>
+          <button
+            type="button"
+            class="btn-success"
+            style="width: 100%; height: 50px"
+            onclick="run()"
+          >
+            Roll
+          </button>
         </div>
       </div>
-      
+
       <div class="card">
         <div class="card-body">
-          <h4>莊<button class="addbtn btn-info btn-sm" onclick="reset('bankerArea')">清空</button></h4>
+          <h4>
+            莊<button
+              class="btnmargin btn-info btn-sm"
+              onclick="reset('bankerArea')"
+            >
+              清空
+            </button>
+          </h4>
           <div id="bankerArea"></div>
         </div>
       </div>
       <div class="card">
         <div class="card-body">
-          <h4>閒<button class="addbtn btn-success btn-sm" onclick="addRow()">添加玩家</button><button class="addbtn btn-info btn-sm" onclick="reset('playerArea')">清空</button></h4>
-          <br/>
+          <h4>
+            閒<button class="btnmargin btn-success btn-sm" onclick="addRow()">
+              添加玩家</button
+            ><button
+              class="btnmargin btn-info btn-sm"
+              onclick="reset('playerArea')"
+            >
+              清空
+            </button>
+          </h4>
+          <br />
           <div id="playerArea"></div>
         </div>
       </div>
@@ -75,111 +104,148 @@
     </div>
   </body>
 </html>
-<link rel="stylesheet" href="./css/bootstrap.min.css">
+<script src="./js/jquery-3.3.1.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/gameRole.js"></script>
 <script>
   Init();
-  function Init(){
-    var bankerArea = '<input type="text" class="username" id="bankerName" placeholder="名稱" value="">';
-    bankerArea += '<input type="text" class="point" id="bankerPoint1" placeholder="點數1" value="">';
-    bankerArea += '<input type="text" class="point" id="bankerPoint2" placeholder="點數2" value="">';
-    bankerArea += '<input type="text" class="score" id="bankerScore" placeholder="分數" value="1000">';
-    document.getElementById('bankerArea').innerHTML = bankerArea
+
+  function Init() {
+
+    let banker = document.createElement("div");
+    banker.setAttribute("class", "playerRow");
+    let bankerName = document.createElement("input");
+    bankerName.setAttribute("type", "text");
+    bankerName.setAttribute("class", "username");
+    bankerName.setAttribute("id", "bankerName");
+    bankerName.setAttribute("placeholder", "名稱");
+    bankerName.setAttribute("value", "");
+    banker.appendChild(bankerName);
+
+    let bankerPoint1 = document.createElement("input");
+    bankerPoint1.setAttribute("type", "text");
+    bankerPoint1.setAttribute("class", "point");
+    bankerPoint1.setAttribute("id", "bankerPoint1");
+    bankerPoint1.setAttribute("placeholder", "點數1");
+    bankerPoint1.setAttribute("value", "");
+    banker.appendChild(bankerPoint1);
+
+    let bankerPoint2 = document.createElement("input");
+    bankerPoint2.setAttribute("type", "text");
+    bankerPoint2.setAttribute("class", "point");
+    bankerPoint2.setAttribute("id", "bankerPoint2");
+    bankerPoint2.setAttribute("placeholder", "點數2");
+    bankerPoint2.setAttribute("value", "");
+    banker.appendChild(bankerPoint2);
+
+    let bankerScore = document.createElement("input");
+    bankerScore.setAttribute("type", "text");
+    bankerScore.setAttribute("class", "score");
+    bankerScore.setAttribute("id", "bankerScore");
+    bankerScore.setAttribute("placeholder", "分數");
+    bankerScore.setAttribute("value", "1000");
+    banker.appendChild(bankerScore);
+
+    // banker.appendChild(createGiftSelect());
+    document.getElementById("bankerArea").appendChild(banker);
   }
 
   function addRow() {
-    let player = document.createElement('div');
-    player.setAttribute('class', 'playerRow');
-    let playerName = document.createElement('input');
-    playerName.setAttribute('type', 'text');
-    playerName.setAttribute('class', 'username');
-    playerName.setAttribute('name', 'playerName');
-    playerName.setAttribute('placeholder', '名稱');
-    playerName.setAttribute('value', '');
+    let player = document.createElement("div");
+    player.setAttribute("class", "playerRow");
+    let playerName = document.createElement("input");
+    playerName.setAttribute("type", "text");
+    playerName.setAttribute("class", "username");
+    playerName.setAttribute("name", "playerName");
+    playerName.setAttribute("placeholder", "名稱");
+    playerName.setAttribute("value", "");
     player.appendChild(playerName);
-    
-    let playerPoint1 = document.createElement('input');
-    playerPoint1.setAttribute('type', 'text');
-    playerPoint1.setAttribute('class', 'point');
-    playerPoint1.setAttribute('name', 'playerPoint1');
-    playerPoint1.setAttribute('placeholder', '點數1');
-    playerPoint1.setAttribute('value', '');
+
+    let playerPoint1 = document.createElement("input");
+    playerPoint1.setAttribute("type", "text");
+    playerPoint1.setAttribute("class", "point");
+    playerPoint1.setAttribute("name", "playerPoint1");
+    playerPoint1.setAttribute("placeholder", "點數1");
+    playerPoint1.setAttribute("value", "");
     player.appendChild(playerPoint1);
 
-    let playerPoint2 = document.createElement('input');
-    playerPoint2.setAttribute('type', 'text');
-    playerPoint2.setAttribute('class', 'point');
-    playerPoint2.setAttribute('name', 'playerPoint2');
-    playerPoint2.setAttribute('placeholder', '點數2');
-    playerPoint2.setAttribute('value', '');
+    let playerPoint2 = document.createElement("input");
+    playerPoint2.setAttribute("type", "text");
+    playerPoint2.setAttribute("class", "point");
+    playerPoint2.setAttribute("name", "playerPoint2");
+    playerPoint2.setAttribute("placeholder", "點數2");
+    playerPoint2.setAttribute("value", "");
     player.appendChild(playerPoint2);
 
-    let playerScore = document.createElement('input');
-    playerScore.setAttribute('type', 'text');
-    playerScore.setAttribute('class', 'score');
-    playerScore.setAttribute('name', 'playerScore');
-    playerScore.setAttribute('placeholder', '分數');
-    playerScore.setAttribute('value', '1000');
+    let playerScore = document.createElement("input");
+    playerScore.setAttribute("type", "text");
+    playerScore.setAttribute("class", "score");
+    playerScore.setAttribute("name", "playerScore");
+    playerScore.setAttribute("placeholder", "分數");
+    playerScore.setAttribute("value", "1000");
     player.appendChild(playerScore);
 
-    let removeBtn = document.createElement('button');
-    removeBtn.setAttribute('class', 'btn-danger');
-    removeBtn.innerHTML = '-';
-    removeBtn.onclick = function() {
+    // player.appendChild(createGiftSelect());
+
+    let removeBtn = document.createElement("button");
+    removeBtn.setAttribute("class", "btn-danger btnmargin");
+    removeBtn.innerHTML = "-";
+    removeBtn.onclick = function () {
       player.remove();
-    }
+    };
     player.appendChild(removeBtn);
 
-    document.getElementById('playerArea').appendChild(player)
+    document.getElementById("playerArea").appendChild(player);
   }
 
-  function reset(areaName){
-    if (areaName === 'playerArea') {
+  function reset(areaName) {
+    if (areaName === "playerArea") {
       var playerArea = document.getElementById(areaName);
       while (playerArea.firstChild) {
         playerArea.removeChild(playerArea.firstChild);
       }
       return;
     }
-    if (areaName === 'bankerArea') {
+    if (areaName === "bankerArea") {
       var bankerArea = document.getElementById(areaName);
-      document.getElementById("bankerName").value = '';
-      document.getElementById("bankerPoint1").value = '';
-      document.getElementById("bankerPoint2").value = '';
-      document.getElementById("bankerScore").value = '';
+      document.getElementById("bankerName").value = "";
+      document.getElementById("bankerPoint1").value = "";
+      document.getElementById("bankerPoint2").value = "";
+      document.getElementById("bankerScore").value = "";
       return;
     }
   }
 
-  function run(){
-    var bankerName = document.getElementById('bankerName').value;
-    var bankerPoint1 = document.getElementById('bankerPoint1').value;
-    var bankerPoint2 = document.getElementById('bankerPoint2').value;
-    var bankerScore = document.getElementById('bankerScore').value;
-    var playerList = document.getElementsByName('playerName');
-    var playerPoint1List = document.getElementsByName('playerPoint1');
-    var playerPoint2List = document.getElementsByName('playerPoint2');
-    var playerScoreList = document.getElementsByName('playerScore');
+  function run() {
+    var bankerName = document.getElementById("bankerName").value;
+    var bankerPoint1 = document.getElementById("bankerPoint1").value;
+    var bankerPoint2 = document.getElementById("bankerPoint2").value;
+    var bankerScore = document.getElementById("bankerScore").value;
+    var playerList = document.getElementsByName("playerName");
+    var playerPoint1List = document.getElementsByName("playerPoint1");
+    var playerPoint2List = document.getElementsByName("playerPoint2");
+    var playerScoreList = document.getElementsByName("playerScore");
     var playerData = [];
     for (var i = 0; i < playerList.length; i++) {
       playerData.push({
         name: playerList[i].value,
-        dices: [parseInt(playerPoint1List[i].value), parseInt(playerPoint2List[i].value)],
-        score: playerScoreList[i].value
-      })
+        dices: [
+          parseInt(playerPoint1List[i].value),
+          parseInt(playerPoint2List[i].value),
+        ],
+        score: playerScoreList[i].value,
+      });
     }
 
     var bankerData = [
       {
         name: bankerName,
         dices: [parseInt(bankerPoint1), parseInt(bankerPoint2)],
-        score: bankerScore
-      }
+        score: bankerScore,
+      },
     ];
-
-    var result = gameRole(bankerData, playerData);
-    console.log(result);
+    gameRole(bankerData, playerData);
+    // var result = gameRole(bankerData, playerData);
+    // console.log(result);
   }
-
 </script>
