@@ -55,19 +55,6 @@
       <h2>AntiChat Dice Game</h2>
       <div class="card">
         <div class="card-body">
-          <button
-            type="button"
-            class="btn-success"
-            style="width: 100%; height: 50px"
-            onclick="run()"
-          >
-            Roll
-          </button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-body">
           <h4>
             莊<button
               class="btnmargin btn-info btn-sm"
@@ -82,13 +69,14 @@
       <div class="card">
         <div class="card-body">
           <h4>
-            閒<button class="btnmargin btn-success btn-sm" onclick="addRow()">
-              添加玩家</button
-            ><button
+            閒<button
               class="btnmargin btn-info btn-sm"
               onclick="reset('playerArea')"
             >
               清空
+            </button>
+            <button class="btnmargin btn-success btn-sm" onclick="addRow()">
+              添加玩家
             </button>
           </h4>
           <br />
@@ -97,7 +85,26 @@
       </div>
       <div class="card">
         <div class="card-body">
-          <h4>遊戲結果</h4>
+          <button
+            type="button"
+            class="btn-success"
+            style="width: 100%; height: 50px"
+            onclick="run()"
+          >
+            Roll
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h4>
+            遊戲結果<button
+              class="btnmargin btn-info btn-sm"
+              onclick="reset('resultArea')"
+            >
+              清空
+            </button>
+          </h4>
           <div id="resultArea"></div>
         </div>
       </div>
@@ -111,7 +118,6 @@
   Init();
 
   function Init() {
-
     let banker = document.createElement("div");
     banker.setAttribute("class", "playerRow");
     let bankerName = document.createElement("input");
@@ -218,6 +224,10 @@
       document.getElementById("bankerPoint1").value = "";
       document.getElementById("bankerPoint2").value = "";
       document.getElementById("bankerScore").value = "";
+      return;
+    }
+    if (areaName === "resultArea") {
+      document.getElementById(areaName).innerHTML = "";
       return;
     }
   }
