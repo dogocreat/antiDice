@@ -23,7 +23,7 @@ function rollDice(){
 function gameRole(bankers, players){
     var resultArea = document.getElementById('resultArea');
     resultArea.innerHTML = "";
-    dices = rollDices(3);
+    var dices = rollDices(3);
     // console.log(dices)
     players.forEach(player => {
         player.mergeDices = mergePlayerDice(player.dices, dices);
@@ -197,7 +197,7 @@ function mergePlayerDice(playersDice, dices){
  * @param {Array} playersDice
  */
 function caluTotalPoints(playersDice){
-    totalPoints = 0;
+    var totalPoints = 0;
     for (let i = 0; i < playersDice.length; i++){
         totalPoints += playersDice[i];
     }
@@ -211,6 +211,7 @@ function checkHavePoint(playersDice){
     for (let i = 0; i < playersDice.length; i++) {
         for (let j = i+1; j < playersDice.length; j++) {
             for (let k = j+1; k < playersDice.length; k++) {
+                console.log(i,j,k);
                 if (playersDice[i]+playersDice[j]+playersDice[k] == niuPoint){
                     return true;
                 }
