@@ -102,14 +102,15 @@ function gameRole(bankers, players) {
     th.innerHTML = "玩家";
     tr.appendChild(th);
     th = document.createElement("th");
-    th.innerHTML = "玩家猜骰";
+    th.style = "width: 30%";
+    th.innerHTML = "猜骰";
     tr.appendChild(th);
     th = document.createElement("th");
     th.innerHTML = "點數";
     tr.appendChild(th);
-    th = document.createElement("th");
-    th.innerHTML = "輸贏";
-    tr.appendChild(th);
+    // th = document.createElement("th");
+    // th.innerHTML = "輸贏";
+    // tr.appendChild(th);
     var thead = document.createElement("thead");
     thead.className = "thead-dark";
     thead.appendChild(tr);
@@ -117,28 +118,28 @@ function gameRole(bankers, players) {
 
     var banker = bankers[0];
     var tr = document.createElement("tr");
-      var td = document.createElement("td");
-      td.innerHTML = "莊";
-      tr.appendChild(td);
-      td = document.createElement("td");
-      td.innerHTML = banker.name;
-      tr.appendChild(td);
-      td = document.createElement("td");
-      for (let i = 0; i < banker.dices.length; i++) {
-        const dice = banker.dices[i];
-        td.innerHTML += convertDicePic(dice);
-      }
-      tr.appendChild(td);
-      td = document.createElement("td");
+    var td = document.createElement("td");
+    td.innerHTML = "莊";
+    tr.appendChild(td);
+    td = document.createElement("td");
+    td.innerHTML = banker.name;
+    tr.appendChild(td);
+    td = document.createElement("td");
+    for (let i = 0; i < banker.dices.length; i++) {
+      const dice = banker.dices[i];
+      td.innerHTML += convertDicePic(dice);
+    }
+    tr.appendChild(td);
+    td = document.createElement("td");
     if (banker.isNiu) {
       td.innerHTML = "妞";
     } else {
       td.innerHTML = banker.point;
     }
     tr.appendChild(td);
-    td = document.createElement("td");
-    td.innerHTML = "";
-    tr.appendChild(td);
+    // td = document.createElement("td");
+    // td.innerHTML = "";
+    // tr.appendChild(td);
     table.appendChild(tr);
 
     console.log(banker);
@@ -166,9 +167,17 @@ function gameRole(bankers, players) {
       }
       tr.appendChild(td);
 
-      td = document.createElement("td");
-      td.innerHTML = winloseConvert[player.win];
-      tr.appendChild(td);
+      //   td = document.createElement("td");
+      //   td.innerHTML = winloseConvert[player.win];
+      //   tr.appendChild(td);
+
+      if (player.win == "true") {
+        tr.className = "table-success";
+      } else if (player.win == "false") {
+        tr.className = "table-danger";
+      } else {
+        tr.className = "table-warning";
+      }
       table.appendChild(tr);
     });
     resultArea.appendChild(table);
