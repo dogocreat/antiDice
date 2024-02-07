@@ -52,7 +52,7 @@
       >
     </noscript>
     <div>
-      <h2>AntiChat Dice Game</h2>
+      <h2>AntiChat Dice Game <button type="button" class="btn btn-sm btn-info" id="role" data-toggle="popover" data-placement="bottom" title="遊戲規則" data-content="And here's some amazing content. It's very engaging. Right?">規則</button></h2>
       <div class="card">
         <div class="card-body">
           <h4>
@@ -113,6 +113,7 @@
 </html>
 <script src="./js/jquery-3.3.1.js"></script>
 <script src="./js/bootstrap.min.js"></script>
+<script src="./js/bootstrap.bundle.min.js"></script>
 <script src="./js/gameRole.js"></script>
 <script>
   Init();
@@ -146,17 +147,43 @@
     bankerPoint2.inputMode = "numeric";
     banker.appendChild(bankerPoint2);
 
-    let bankerScore = document.createElement("input");
-    bankerScore.setAttribute("type", "text");
-    bankerScore.setAttribute("class", "score");
-    bankerScore.setAttribute("id", "bankerScore");
-    bankerScore.setAttribute("placeholder", "分數");
-    bankerScore.setAttribute("value", "1000");
-    bankerScore.inputMode = "numeric";
-    banker.appendChild(bankerScore);
-
     // banker.appendChild(createGiftSelect());
     document.getElementById("bankerArea").appendChild(banker);
+
+
+    //set role popover
+    $('[data-toggle="popover"]').popover({
+      trigger: 'hover',
+      html: true,
+    });
+
+    var roleText = "規則：<br/>";
+    roleText += "1. 程式隨機骰三顆骰子。<br/>";
+    roleText += "2. 莊家和閒家各自選兩顆骰子。<br/>";
+    roleText += "3. 共五顆骰子。<br/>";
+    roleText += "4. 組合三顆骰子加總為十點為有點數。<br/>";
+    roleText += "5. 剩餘兩顆骰子加總,大於十取尾數。<br/>";
+    roleText += "6. 有點數者,比大小,大者贏;莊吃平點。<br/>";
+    roleText += "7. 點數加總等於十為妞妞。<br/>";
+    roleText += "賠率：<br/>";
+    roleText += "1.妞妞三倍。<br/>";
+    roleText += "2.八九兩倍。<br/>";
+    roleText += "3.三同隨機骰兩倍。<br/>";
+    roleText += "4.其他點數一倍。<br/>";
+    roleText += "5.莊閒都沒點平手。<br/>";
+    roleText += "大小排序：<br/>";
+    roleText += "1.莊-妞妞<br/>";
+    roleText += "2.閒-妞妞<br/>";
+    roleText += "3.莊-八九<br/>";
+    roleText += "4.閒-八九<br/>";
+    roleText += "5.莊-三同<br/>";
+    roleText += "6.閒-三同<br/>";
+    roleText += "7.莊-點數<br/>";
+    roleText += "8.閒-點數<br/>";
+
+
+
+    document.getElementById("role").setAttribute("data-content", roleText);
   }
 
   function addRow() {
