@@ -250,7 +250,6 @@
       document.getElementById("bankerName").value = "";
       document.getElementById("bankerPoint1").value = "";
       document.getElementById("bankerPoint2").value = "";
-      document.getElementById("bankerScore").value = "";
       return;
     }
     if (areaName === "resultArea") {
@@ -263,7 +262,6 @@
     var bankerName = document.getElementById("bankerName").value;
     var bankerPoint1 = document.getElementById("bankerPoint1").value;
     var bankerPoint2 = document.getElementById("bankerPoint2").value;
-    var bankerScore = document.getElementById("bankerScore").value;
     var playerList = document.getElementsByName("playerName");
     var playerPoint1List = document.getElementsByName("playerPoint1");
     var playerPoint2List = document.getElementsByName("playerPoint2");
@@ -284,7 +282,6 @@
       {
         name: bankerName,
         dices: [parseInt(bankerPoint1), parseInt(bankerPoint2)],
-        score: bankerScore,
       },
     ];
     gameRole(bankerData, playerData);
